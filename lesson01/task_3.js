@@ -28,6 +28,3 @@ console.log(result);
 // унарный "+": число / NaN = NaN
 result = 10 / +'2,5';
 console.log(result);
-
-
-
