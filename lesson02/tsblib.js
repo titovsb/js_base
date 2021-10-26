@@ -10,7 +10,7 @@ let a = 3
 let b = 2
 
 /**
- * alerts(a-b) if arguments is positive
+ * Функцция высвечивает результат функции в зависимости от аргументов.
  * @param {*} a first param
  * @param {*} b second param
  */
