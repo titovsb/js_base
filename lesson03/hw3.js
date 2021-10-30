@@ -148,4 +148,4 @@ console.log(ar.join());
 // только у вашей горки должно быть 20 рядов, а не 5:
 
 console.info('Шестое задание:');
-for (let i = 1; i <= 20; ++i) console.log(i + 'x'.repeat(i))
+for (let i = 1; i <= 20; ++i) console.log('x'.repeat(i))
