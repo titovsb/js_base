@@ -51,19 +51,19 @@ function _div_(a, b) {                                  // декларатив�
 // операций
 // (использовать функции из задания 4) и вернуть полученное значение.
 
-function mathOperation(arg1, arg2, operation){
-    switch (operation){
+function mathOperation(arg1, arg2, operation) {
+    switch (operation) {
         case 'add':
-            alert('ADD '+_add_(arg1,arg2));
+            alert('ADD ' + _add_(arg1, arg2));
             break;
         case 'sub':
-            alert('SUB '+ _sub_(arg1, arg2));
+            alert('SUB ' + _sub_(arg1, arg2));
             break;
         case 'div':
-            alert('DIV '+_div_(arg1, arg2));
+            alert('DIV ' + _div_(arg1, arg2));
             break;
         case 'mul':
-            alert('MUL '+_mul_(arg1, arg2));
+            alert('MUL ' + _mul_(arg1, arg2));
             break;
         default:
             alert('UNKNOWN OPERATION');
@@ -88,10 +88,10 @@ function transaction_simulator() {
         return              // заканчиваем рекурсию
     }
     let str = String(digit);                // обратно в строку
-    let char = str.charAt(str.length-1)     // берем символ
+    let char = str.charAt(str.length - 1)     // берем символ
     let word                                // объявляем переменную
-    if (str.charAt(str.length-2) + char == '11' ||  // если заканчивается на "11"
-        str.charAt(str.length-2) + char == '12') {  // или "12"
+    if (str.charAt(str.length - 2) + char == '11' ||  // если заканчивается на "11"
+        str.charAt(str.length - 2) + char == '12') {  // или "12"
         word = 'рублей';                            // то это исключение
     } else {                                        // иначе стандартная схема: 
         switch (char) {
@@ -107,10 +107,36 @@ function transaction_simulator() {
                 word = 'рублей'
         }
     }
-    alert(`Ваша сумма в ${str} ${word} успешно зачислена.`);   
+    alert(`Ваша сумма в ${str} ${word} успешно зачислена.`);
     transaction_simulator();                        // на рекурсию
 }
 
+
+function transaction_simulator2() {
+    let word                            // объявляем переменную
+    let digit = prompt('Введите сумму для взноса (ESC, чтобы закончить)?');
+    if (isNaN(parseInt(digit))) {       // Определяем, что ничего не введено или ESC
+        return                          // заканчиваем рекурсию
+    }
+    if (/1[1234]$/.test(digit)) {       // если 11/12/13/14
+        word = 'рублей';                // то это исключение
+    } else {                            // иначе стандартная схема: 
+        switch (digit.slice(-1)) {
+            case '1':
+                word = 'рубль';
+                break;
+            case '2':
+            case '3':
+            case '4':
+                word = 'рубля'
+                break;
+            default:
+                word = 'рублей'
+        }
+    }
+    alert(`Ваша сумма в ${digit} ${word} успешно зачислена.`);
+    transaction_simulator2();                        // на рекурсию
+}
 
 
 /**
