@@ -125,7 +125,7 @@ console.log(picturedProducts);
 
 let sortedProducts = products2.sort(function (fe, se) {
     if (fe.price == se.price) return 0;
-    return fe.price - se.price > 0 ? 1 : -1;
+    return fe.price > se.price ? 1 : -1;
 });
 console.log(sortedProducts);
 
