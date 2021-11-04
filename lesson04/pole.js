@@ -1,5 +1,8 @@
 'use strict';
 
+const toWindow = 0;
+const toConsole = 1;
+
 const enumAnswer = {
     0: 'a',
     1: 'b',
@@ -57,11 +60,12 @@ const qaBase = {
 }
 
 class Pole {
-    constructor(base) {
+    constructor(base, terminal) {
         this.result = 0;
         this.base = base;
-        console.log('ПОЛЕ ЧУДЕС НА НОВЫЙ ЛАД!!');
-        console.log(`Ответьте на ${this.getBaseLength} вопросов или идите отсюдова`);
+        this.out = terminal;
+        this.showSomething('ПОЛЕ ЧУДЕС НА НОВЫЙ ЛАД!!');
+        this.showSomething(`Ответьте на ${this.getBaseLength} вопросов или идите отсюдова`);
     }
 
     // Возвращаем количество вопросов переданных в объект this.base
@@ -91,12 +95,12 @@ class Pole {
 
     // показываем вопрос и цену вопроса.
     showQ(el) {
-        console.log(`${this.getQuestion(el)}. (Цена: ${this.getPrice(el)})`);
+        this.showSomething(`${this.getQuestion(el)}. (Цена: ${this.getPrice(el)})`);
     }
 
     // показываем id ответ el вопроса и нумеруем его
     showA(el, id) {
-        console.log(`${enumAnswer[id]}. ${this.getAnswer(el, id)}`);
+        this.showSomething(`${enumAnswer[id]}. ${this.getAnswer(el, id)}`);
     }
 
     // true если answer соответствует верному ответу на el вопрос
@@ -114,9 +118,9 @@ class Pole {
     // показываем текущий результат, и если надо выводим текст
     showResult(text) {
         if (text)
-            console.log(`${text}. Общий счет ${this.result}`);
+            this.showSomething(`${text}. Общий счет ${this.result}`);
         else
-            console.log(`Ваш результат: ${this.result}`);
+            this.showSomething(`Ваш результат: ${this.result}`);
     }
 
     // ну собственно конец игры
@@ -124,6 +128,14 @@ class Pole {
         this.result = 0;
         if (text)
             console.log(text);
+    }
+
+    // выводит сообщение на терминал или в окно браузера
+    showSomething(text) {
+        if (this.out)
+            console.log(text);
+        else
+            show(text);
     }
 
     // основной метод класса.
@@ -152,5 +164,7 @@ class Pole {
 
 }
 
-let theGame = new Pole(qaBase);
+// в варианте для вывода в окно браузера запрос prompt блокирует вывод текста на экран(((
+// let theGame = new Pole(qaBase, toWindow);
+let theGame = new Pole(qaBase, toConsole);
 theGame.run();
