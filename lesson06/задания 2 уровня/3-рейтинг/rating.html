@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
     <style>
         i {
             font-size: 50px;
         }
+
         .golden {
             color: gold;
         }
     </style>
 </head>
+
 <body>
     <i id="first" class="fas fa-star"></i>
     <i id="second" class="fas fa-star"></i>
@@ -31,23 +36,52 @@
     -->
 
     <script>
-        let firstStar = document.getElementById('first');
-        let secondStar = document.getElementById('second');
-        let thirdStar = document.getElementById('third');
-        let fourthStar = document.getElementById('fourth');
-        let fifthStar = document.getElementById('fifth');
+        // let firstStar = document.getElementById('first');
+        // let secondStar = document.getElementById('second');
+        // let thirdStar = document.getElementById('third');
+        // let fourthStar = document.getElementById('fourth');
+        // let fifthStar = document.getElementById('fifth');
 
         let goldenClass = 'golden';
 
-        firstStar.addEventListener('mouseover', function() {
-            if (!firstStar.classList.contains('goldenClass')) {
-                firstStar.classList.add(goldenClass);
-            }
-        });
+        // firstStar.addEventListener('mouseover', function () {
+        //     if (!firstStar.classList.contains('goldenClass')) {
+        //         firstStar.classList.add(goldenClass);
+        //     }
+        // });
 
-        firstStar.addEventListener('mouseout', function() {
-            firstStar.classList.remove(goldenClass);
-        });
+        // firstStar.addEventListener('mouseout', function () {
+        //     firstStar.classList.remove(goldenClass);
+        // });
+        function showStars(event) {
+            let el = event.target;
+            do {
+                if (!el.classList.contains(goldenClass)) {
+                    el.classList.add(goldenClass);
+                    el = el.previousElementSibling;
+                }
+            } while (el);
+        }
+        function hideStars(event) {
+            let el = event.target;
+            do {
+                // можно проверять, а можно и пробежаться без проверки по элементам
+                // if (el.classList.contains(goldenClass)) {
+                //     el.classList.remove(goldenClass);
+                // }
+                el.classList.remove(goldenClass);
+                el = el.previousElementSibling;
+            } while (el);
+        }
+
+        let starsList = document.getElementsByClassName('fa-star');
+
+        for (let i = 0; i < starsList.length; i++) {
+            starsList[i].addEventListener('mouseover', showStars);
+            starsList[i].addEventListener('mouseout', hideStars);
+        }
+
     </script>
 </body>
+
 </html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <input id="from" type="text">
     В инпуте написано: <span></span>
@@ -19,7 +21,15 @@
     -->
 
     <script>
-        
+        'use strict';
+        function inpFunc(event) {
+            spanLink.textContent = event.target.value;
+        }
+        let spanLink = document.querySelector('span');
+        let inputLink = document.getElementById('from');
+        inputLink.addEventListener('change', inpFunc);
+
     </script>
 </body>
+
 </html>
