@@ -44,9 +44,12 @@
     -->
 
     <script>
-
-        function closeClickHandler(event) {
-           
+        for (let el of document.getElementsByClassName('close')) {
+            el.addEventListener('click', function () {
+                // можем скрыть, но по сути нам эти элементы без надобности, поэтому удаляем
+                // this.parentElement.style.display = 'none';
+                this.parentElement.remove();
+            });
         }
     </script>
 </body>
