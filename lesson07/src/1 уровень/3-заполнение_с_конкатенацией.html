@@ -17,16 +17,13 @@
 
         'use strict';
 
-        let totalString = "";
-
-        let resultString = (count, str = '') => {
-            if (!count) {
-                return str;
+        function joinRecurse(count, str = '') {
+            if (count) {
+                return joinRecurse(count - 1, `word${count}`) + str;
             }
-            return `${str}word${count - 1}`;
-        };
-        console.log(resultString(3));
-        // console.log(totalString);
+            return str;
+        }
+        console.log(joinRecurse(3));
     </script>
 </body>
 
