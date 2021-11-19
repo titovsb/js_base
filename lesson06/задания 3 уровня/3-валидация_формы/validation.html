@@ -36,6 +36,25 @@
      -->
 
     <script>
+            'use strict';
+            let firstEl=document.querySelector('#first');
+            let secondEl=document.querySelector('#second');
+            document.querySelector('form').addEventListener('submit', (event)=>{
+                if (!firstEl.value){
+                    firstEl.style.borderColor='red';
+                } else {
+                    firstEl.style.borderColor='';
+                }
+                if (!secondEl.value){
+                    secondEl.style.borderColor='red';
+                } else {
+                    secondEl.style.borderColor='';
+                }
+                if (!(firstEl=='' || secondEl=='') ) {
+                    event.preventDefault(); 
+                }
+            });
+            
         
     </script>
 </body>
