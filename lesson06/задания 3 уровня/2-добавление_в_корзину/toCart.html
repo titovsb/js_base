@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="product">
         <div>Товар 1</div>
@@ -41,11 +43,25 @@
     -->
 
     <script>
-        
-		
-		function buttonClickHandler(event) {
-		
-		}
+        'use strict';
+        let buttons = document.querySelectorAll('button');
+        // добавляем функциональность добавления и удаления из корзины (для тренировки)
+        // понимая, что решение не соответствует ТЗ
+        // применили добавление в элементы DOM дополнительных свойств, которые потом используются
+        function buttonClickHandler(event) {
+            event.target.parentNode.style.background = event.target.mode ? event.target.savedColor : 'lightgreen';
+            event.target.textContent = event.target.mode ? event.target.savedText : 'Удалить из корзины';
+            event.target.mode = !event.target.mode;
+        }
+        buttons.forEach((el) => {
+            el.mode = false;
+            el.savedText = el.textContent;
+            el.savedColor = el.parentNode.style.background;
+            el.addEventListener('click', buttonClickHandler);
+        });
+
+
     </script>
 </body>
+
 </html>

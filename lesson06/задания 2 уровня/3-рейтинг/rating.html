@@ -74,11 +74,9 @@
             } while (el);
         }
 
-        let starsList = document.getElementsByClassName('fa-star');
-
-        for (let i = 0; i < starsList.length; i++) {
-            starsList[i].addEventListener('mouseover', showStars);
-            starsList[i].addEventListener('mouseout', hideStars);
+        for (let el of document.getElementsByClassName('fa-star')) {
+            el.addEventListener('mouseover', showStars);
+            el.addEventListener('mouseout', hideStars);
         }
 
     </script>
