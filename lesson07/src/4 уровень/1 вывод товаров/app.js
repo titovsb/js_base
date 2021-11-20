@@ -82,10 +82,12 @@ const products = {
  */
 function clickHandler(event) {
     //вам нужно очищать содержимое .products
-    
+
     //в showCategory надо передать строку с типом категории, тип берите
     //из атрибута data-type у кнопки, по которой кликнули.
-    
+    prodContainer.innerHTML = '';
+    showCategory(event.target.dataset.type);
+
 }
 
 /**
@@ -96,7 +98,10 @@ function clickHandler(event) {
  * по которой кликнули.
  */
 function showCategory(category) {
-    
+    for (let i of products[category]) {
+        prodContainer.insertAdjacentHTML('beforeend',
+            getProductMarkup(i));
+    }
 }
 
 /**
@@ -109,5 +114,16 @@ function showCategory(category) {
  * в верху этого файла.
  */
 function getProductMarkup(product) {
-
+    return `<div class="product">` +
+        `<div>${product.name}</div>` +
+        `<img src="${product.imageUrl}" alt="">` +
+        `<div>${product.price}</div>` +
+        `<a href="https://example.com/producs/${product.id}">Подробнее</a>` +
+        `</div>`
 }
+
+let prodContainer = document.querySelector('.products');
+document.querySelectorAll('button').forEach((el) => {
+    el.addEventListener('click', clickHandler);
+})
+

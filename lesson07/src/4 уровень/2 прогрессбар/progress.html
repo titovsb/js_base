@@ -18,6 +18,8 @@
 
     <script>
         let div = document.querySelector('div');
+        const delayVal = 30;    // delay
+        const steps = 100;      // steps count
 
         /**
          * @param {number} percent величина процента от 0 до 100.
@@ -35,7 +37,16 @@
         можете также добавить какой-нибудь коэффициент, чтобы подобрать желаемую скорость
         заполнения прогресс-бара.
         */
-        
+
+
+        let timerId = setTimeout(function request(perc, step) {
+            if (step > steps) {
+                return;
+            }
+            changeProgress(100 / steps * step);
+            timerId = setTimeout(request, delayVal, perc / 100 * step, step + 1);
+        }, delayVal, 0, 0);
+
 
     </script>
 </body>
